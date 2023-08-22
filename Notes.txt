@@ -1,0 +1,20 @@
+nodemon for restarting sever automatically : 
+
+CML: npm i nodemon --save-dev
+and add it to package.json to the start : " nodemon app.js"
+
+to generate unique ID's we use uuid
+
+CML: npm i uuid --save
+
+bodyParser || express
+
+CML: bodyParser npm i --save || npm i express --save
+
+Express validator ( library ) 
+
+CML: npm i --save express-validator
+
+mangoose validator 
+
+CML : npm i --save mangoose-unique-validator
