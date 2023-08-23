@@ -34,19 +34,18 @@ exports.signupUser = async (req, res, next) => {
 };
 
 exports.loginUser = async (req, res, next) => {
-  const { name, pw } = req.body;
-  const lowCaseName = name.toLowerCase();
+  const { email, pw } = req.body;
   let user;
   try {
-    user = await User.findOne({ name: lowCaseName });
+    user = await User.findOne({ email });
   } catch (err) {
     return next(new HttpError(" Somthing Went Wrong ! ", 500));
   }
   if (!user) {
-    return next(new HttpError("Invalid Account !", 401));
+    return next(new HttpError("Invalid Account !", 404));
   }
   if (user.pw !== pw) {
     return next(new HttpError("Incorrect Password !", 401));
   }
-  res.json({ message: ` welcome Mr/Ms ${lowCaseName} ` });
+  res.json({ message: ` welcome Mr/Ms ${email} ` });
 };
