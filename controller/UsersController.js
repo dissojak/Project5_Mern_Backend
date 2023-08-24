@@ -15,11 +15,12 @@ exports.signupUser = async (req, res, next) => {
     console.log(errors);
     return next(new HttpError("Invalid Inputs ! check your data ", 422));
   }
-  const { name, pw, email } = req.body;
+  const { name, pw, email ,image } = req.body;
   const createdUser = new User({
     name: name.toLowerCase(),
     pw,
     email,
+    image,
     places:[]
   });
   try {

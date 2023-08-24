@@ -1,7 +1,6 @@
 const express = require("express");
 const UC = require("../controller/UsersController");
 const { check } = require("express-validator");
-const isoCountryCodes = require("iso-country-codes");
 const router = express.Router();
 
 router.get("/", UC.getUsers);
