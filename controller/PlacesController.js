@@ -81,7 +81,7 @@ exports.createPlace = async (req, res, next) => {
 };
 
 exports.updatePlace = async (req, res, next) => {
-  const { title, description } = req.body;
+  const { title, description ,image} = req.body;
   const placeId = req.params.pid;
   let newPlace;
   try {
@@ -91,6 +91,7 @@ exports.updatePlace = async (req, res, next) => {
   }
   newPlace.title = title;
   newPlace.description = description;
+  newPlace.image = image;
 
   try {
     await newPlace.save();
