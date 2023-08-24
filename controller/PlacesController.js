@@ -44,13 +44,12 @@ exports.createPlace = async (req, res, next) => {
     return next(new HttpError("Invalid Inputs , check your data ", 422));
   }
 
-  const { title, description, location, adress, creator } = req.body;
+  const { title, description, adress, image, creator } = req.body;
   const createdPlace = new Place({
     title,
     description,
-    image:
-      "https://instagram.ftun16-1.fna.fbcdn.net/v/t51.2885-15/323793979_3431821727094338_226536469517154699_n.webp?stp=dst-jpg_e35_p640x640_sh0.08&_nc_ht=instagram.ftun16-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=CTEXMK1eTLkAX8MQLt0&edm=AJqaXLUBAAAA&ccb=7-5&ig_cache_key=MzAwODU0NDc2NDU2NDc4Nzc2Ng%3D%3D.2-ccb7-5&oh=00_AfBJKbl6npwTSfyMcQgi37mw3Owt3uub2OOxnAn-NACKSA&oe=64E4DCC1&_nc_sid=7b930e",
-    location,
+    image,
+    location: { lat: 265986.15, lng: -758648.35 },
     adress,
     creator,
   });
@@ -76,7 +75,7 @@ exports.createPlace = async (req, res, next) => {
     await user.save({ SESSION });
     await SESSION.commitTransaction();
   } catch (e) {
-    return next(new HttpError(" Creating place failed ! ", 500));
+    return next(new HttpError(" Creating place failed saiving ! ", 500));
   }
   res.status(201).json({ place: createdPlace });
 };
