@@ -15,13 +15,13 @@ exports.signupUser = async (req, res, next) => {
     console.log(errors);
     return next(new HttpError("Invalid Inputs ! check your data ", 422));
   }
-  const { name, pw, email ,image } = req.body;
+  const { name, pw, email, image } = req.body;
   const createdUser = new User({
     name: name.toLowerCase(),
     pw,
     email,
     image,
-    places:[]
+    places: [],
   });
   try {
     await createdUser.save();
@@ -48,5 +48,8 @@ exports.loginUser = async (req, res, next) => {
   if (user.pw !== pw) {
     return next(new HttpError("Incorrect Password !", 401));
   }
-  res.json({ message: ` welcome Mr/Ms ${email} ` });
+  res.json({
+    message: ` welcome Mr/Ms ${email} `,
+    user: user.toObject({ getters: true }),
+  });
 };
